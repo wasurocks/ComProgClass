@@ -1,6 +1,6 @@
 public class WhiteImg {
 	public static void main(String[] args) {
-		// Declaring and initializing a 3D array called white
+		// Declaring a 3D array called white
 		int[][][] white = new int[64][128][3];
 		
 		// Assigning all-white pixels for the white array 
