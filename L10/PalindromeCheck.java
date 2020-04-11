@@ -5,6 +5,8 @@ public class PalindromeCheck {
 		while (true) {
 			String word = sc.nextLine();
 			if(word.equals("q")) System.exit(0);
+			word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+
 			System.out.println(checkPalindrome(word));
 		}
 	}
