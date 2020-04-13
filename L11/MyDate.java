@@ -44,17 +44,17 @@ public class MyDate {
 	public int getDay() {return this.day;}
 
 	public void setYear(int year) throws IllegalArgumentException {
-		if(MyDate.isValidDate(year, this.month, this.day)) throw new IllegalArgumentException("Invalid year!");
+		if(!MyDate.isValidDate(year, this.month, this.day)) throw new IllegalArgumentException("Invalid year!");
 		this.year = year;
 	}
 
 	public void setMonth(int month) throws IllegalArgumentException {
-		if(MyDate.isValidDate(this.year, month, this.day)) throw new IllegalArgumentException("Invalid month!");
+		if(!MyDate.isValidDate(this.year, month, this.day)) throw new IllegalArgumentException("Invalid month!");
 		this.month = month;
 	}
 
 	public void setDay(int day) throws IllegalArgumentException {
-		if(MyDate.isValidDate(this.year, this.month, day)) throw new IllegalArgumentException("Invalid day!");
+		if(!MyDate.isValidDate(this.year, this.month, day)) throw new IllegalArgumentException("Invalid day!");
 		this.day = day;
 	}
 
@@ -83,14 +83,14 @@ public class MyDate {
 	}
 
 	public MyDate previousDay() {
-		if(isValidDate(this.year, this.month, this.day - 1)) 
-			return new MyDate(this.year, this.month, this.day - 1);
-		else if(isValidDate(this.year, this.month - 1, 31))
-			return new MyDate(this.year, this.month - 1, 
-				((this.month == 2 && MyDate.isLeapYear(this.year))? 29 : MyDate.daysInMonths[this.month - 1])
-			);
-		else return new MyDate(this.year - 1, 12, 31); 
-	}
+        if (isValidDate(this.year, this.month, this.day - 1))
+            return new MyDate(this.year, this.month, this.day - 1);
+        else if (isValidDate(this.year, this.month - 1, 1)) {
+            return new MyDate(this.year, this.month - 1,
+                    ((this.month - 1 == 2 && MyDate.isLeapYear(this.year)) ? 29 : MyDate.daysInMonths[this.month - 2]));
+        } else
+            return new MyDate(this.year - 1, 12, 31);
+    }
 
 	public MyDate previousMonth() {
 		if(isValidDate(this.year, this.month - 1, 1))return new MyDate(this.year, this.month - 1, 1);
